@@ -1,0 +1,50 @@
+name:                estimator
+version:             1.0.0
+synopsis:            State-space estimation algorithms such as Kalman Filters
+description:
+  The goal of this library is to simplify implementation and use of
+  state-space estimation algorithms, such as Kalman Filters. The
+  interface for constructing models is isolated as much as possible from
+  the specifics of a given algorithm, so swapping out a Kalman Filter
+  for a Bayesian Particle Filter should involve a minimum of effort.
+  .
+  This implementation is designed to support symbolic types, such as
+  from <http://hackage.haskell.org/package/sbv sbv> or
+  <http://hackage.haskell.org/package/ivory ivory>. As a result you can
+  generate code in another language, such as C, from a model written
+  using this package; or run static analyses on your model.
+  .
+  Also included is a sophisticated sensor fusion example in
+  "Numeric.Estimator.Model.SensorFusion", which may be useful in its own
+  right.
+license:             BSD3
+license-file:        LICENSE
+author:              Jamey Sharp
+maintainer:          jamey@galois.com
+copyright:           2014 Galois, Inc.
+homepage:            https://github.com/GaloisInc/estimator
+bug-reports:         https://github.com/GaloisInc/estimator/issues
+category:            Math, Numerical, Statistics
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Numeric.Estimator,
+                       Numeric.Estimator.Augment,
+                       Numeric.Estimator.Class,
+                       Numeric.Estimator.KalmanFilter,
+                       Numeric.Estimator.Model.Coordinate,
+                       Numeric.Estimator.Model.Pressure,
+                       Numeric.Estimator.Model.SensorFusion,
+                       Numeric.Estimator.Model.Symbolic
+  other-modules:       Numeric.Estimator.Matrix,
+                       Numeric.Estimator.Quaternion
+  build-depends:       base >=4.6,
+                       ad >=4.2,
+                       distributive >=0.4,
+                       lens >=4.6,
+                       linear >=1.15,
+                       reflection >=1.5
+  default-language:    Haskell2010
+  ghc-options:         -Wall -Werror
