@@ -18,6 +18,8 @@ unusual to encounter problems that require that degree of flexibility.
 
 module Numeric.Estimator.Class where
 
+import GHC.Exts (Constraint)
+
 -- | An estimator is a model of a system, describing how to update a
 -- prior estimated state with new information. Two kinds of estimators
 -- are the 'Process' model, and the 'Measure' (or observation) model.
@@ -72,12 +74,12 @@ class Estimator t => Measure t where
   -- observation is, such as, for example, the innovation. This is the
   -- type of that quality indication, which may be @()@ if the chosen
   -- algorithm can't report measurement quality.
-  type MeasureQuality t obs
+  type MeasureQuality (t :: *) (obs :: * -> *) :: *
 
   -- | An algorithm may have specific constraints on what types of
   -- observation it can process. This type has a 'Constraint' kind and
   -- captures any required type-class constraints.
-  type MeasureObservable t obs
+  type MeasureObservable (t :: *) (obs :: * -> *) :: Constraint
 
   measure :: MeasureObservable t obs
           => obs (Var t, t)
