@@ -1,4 +1,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE DeriveTraversable #-}
+{-# LANGUAGE DeriveFoldable #-}
 
 {- |
 Description: Types for different coordinate systems
@@ -34,7 +36,10 @@ surface of the Earth, so this approach is of limited use over long
 distances.
 -}
 newtype NED a = NED { nedToVec3 :: V3 a }
-    deriving (Show, Additive, Applicative, Distributive, Foldable, Functor, Metric, Num, Traversable)
+    deriving (Show, Additive, Applicative, Foldable, Functor, Metric, Num, Traversable)
+
+instance Distributive NED where
+  distribute = NED . distribute . fmap nedToVec3
 
 -- | Construct a navigation frame coordinate from (north, east, down).
 ned :: a -> a -> a -> NED a
@@ -53,7 +58,10 @@ current position and orientation of the sensor platform, as of the
 instant that the measurement was taken.
 -}
 newtype XYZ a = XYZ { xyzToVec3 :: V3 a }
-    deriving (Show, Additive, Applicative, Distributive, Foldable, Functor, Metric, Num, Traversable)
+    deriving (Show, Additive, Applicative, Foldable, Functor, Metric, Num, Traversable)
+
+instance (Distributive XYZ) where
+  distribute = XYZ . distribute . fmap xyzToVec3
 
 -- | Construct a body frame coordinate from (x, y, z).
 xyz :: a -> a -> a -> XYZ a
