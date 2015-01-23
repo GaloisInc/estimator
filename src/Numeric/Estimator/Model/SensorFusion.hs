@@ -164,7 +164,7 @@ instance Distributive DisturbanceVector where
 
 -- | Initial covariance for this model.
 initCovariance :: Fractional a => StateVector (StateVector a)
-initCovariance = kronecker $ fmap (^ (2 :: Int)) $ StateVector
+initCovariance = scaled $ fmap (^ (2 :: Int)) $ StateVector
     { stateOrient = pure 0.1
     , stateVel = pure 0.7
     , statePos = ned 15 15 5

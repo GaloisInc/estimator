@@ -17,8 +17,6 @@ import Data.Traversable
 import Linear
 import Prelude hiding (foldr)
 
-instance Metric []
-
 msplit :: [a] -> [[a]] -> (a, [a], [a], [[a]])
 msplit row rows = (first, top, left, rest)
     where
