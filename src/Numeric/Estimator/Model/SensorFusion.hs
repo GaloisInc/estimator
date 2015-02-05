@@ -274,7 +274,7 @@ processModel dt (AugmentState state dist) = AugmentState state' $ pure 0
 
 -- | Compute the local air pressure from the state vector. Useful as a
 -- measurement model for a pressure sensor.
-statePressure :: Floating a => StateVector a -> a
+statePressure :: (Floating a, Ord a) => StateVector a -> a
 statePressure = heightToPressure . negate . (^._z) . nedToVec3 . statePos
 
 -- | Compute the true air-speed of the sensor platform. Useful as a
