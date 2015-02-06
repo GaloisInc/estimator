@@ -10,8 +10,8 @@ import Atmosphere
 
 -- | Given a barometric pressure measurement in Pascals, return altitude in meters.
 pressureToHeight :: (Floating a, Ord a) => a -> a
-pressureToHeight = atmosPressure . siAtmosphere
+pressureToHeight = siAltitudeFromPressure
 
 -- | Given altitude in meters, return a barometric pressure measurement in Pascals.
 heightToPressure :: (Floating a, Ord a) => a -> a
-heightToPressure = siAltitudeFromPressure
+heightToPressure = atmosPressure . siAtmosphere
