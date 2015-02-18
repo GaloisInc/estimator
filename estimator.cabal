@@ -54,7 +54,8 @@ library
                        distributive >=0.4,
                        lens >=4.6,
                        linear >=1.16 && <1.17,
-                       reflection >=1.5
+                       reflection >=1.5,
+                       atmos >= 0.2
   default-language:    Haskell2010
   ghc-options:         -Wall
   if flag(werror)
