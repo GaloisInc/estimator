@@ -18,6 +18,7 @@ import Numeric.AD.Internal.Reverse (Tape)
 import Numeric.AD.Mode.Reverse
 import Numeric.Estimator.Class
 import Numeric.Estimator.Matrix
+import Prelude
 
 -- | All variants of Kalman Filter, at their core, maintain the
 -- parameters of a multi-variate normal distribution.

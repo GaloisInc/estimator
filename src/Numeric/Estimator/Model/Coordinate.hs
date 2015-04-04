@@ -21,6 +21,7 @@ import Data.Distributive
 import Data.Foldable
 import Data.Traversable
 import Linear
+import Prelude
 
 -- * Navigation frame
 
