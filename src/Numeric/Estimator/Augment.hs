@@ -26,6 +26,7 @@ import Data.Foldable
 import Data.Traversable
 import Linear
 import Numeric.Estimator.Class
+import Prelude
 
 -- | Holder for the basic state vector plus the augmented extra state.
 data AugmentState state extra a = AugmentState { getState :: state a, getExtra :: extra a }
