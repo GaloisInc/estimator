@@ -35,6 +35,7 @@ source-repository    this
 
 Flag werror
   description: Make warnings errors
+  manual: True
   default: False
 
 library
