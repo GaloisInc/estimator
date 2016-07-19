@@ -27,6 +27,7 @@ bug-reports:         https://github.com/GaloisInc/estimator/issues
 category:            Math, Numerical, Statistics
 build-type:          Simple
 cabal-version:       >=1.10
+tested-with:         GHC == 7.6.3, GHC == 7.8.4, GHC == 7.10.2, GHC == 8.0.1
 
 source-repository    this
   type:     git
