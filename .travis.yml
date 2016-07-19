@@ -1,5 +1,29 @@
+# This file has been generated -- see https://github.com/hvr/multi-ghc-travis
+language: c
 sudo: false
-language: haskell
-ghc:
-  - 7.6
-  - 7.8
+
+git:
+  submodules: false
+
+matrix:
+  include:
+    - env: GHCVER=7.8.4
+      addons: {apt: {packages: [ghc-7.8.4], sources: [hvr-ghc]}}
+    - env: GHCVER=7.10.3
+      addons: {apt: {packages: [ghc-7.10.3], sources: [hvr-ghc]}}
+    - env: GHCVER=8.0.1
+      addons: {apt: {packages: [ghc-8.0.1], sources: [hvr-ghc]}}
+
+before_install:
+ - export PATH=/opt/ghc/$GHCVER/bin:$PATH
+
+# Here starts the actual work to be performed for the package under test;
+# any command which exits with a non-zero exit code causes the build to fail.
+script:
+ - ghc --version
+ - cabal --version
+ - cabal update
+ - cabal install --only-dependencies --enable-tests
+ - cabal configure --enable-tests && cabal build && cabal test
+
+# EOF
